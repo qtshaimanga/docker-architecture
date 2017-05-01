@@ -1,0 +1,16 @@
+# Compose Docker container with sub-containers apache-php7 & mariadb
+# Each sub-containers are described by their own Dockerfile
+version: '3'
+services:
+  apache-php7:
+    build: ./apache-php7
+    ports:
+      - '80:80'
+    volumes:
+      - ${DEV_PROJECT_PATH}:/var/www/html
+  mariadb: 
+    build: ./mariadb
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '3306:3306'
