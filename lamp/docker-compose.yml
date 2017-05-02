@@ -8,6 +8,7 @@ services:
       - '80:80'
     volumes:
       - ${DEV_PROJECT_PATH}:/var/www/html
+      - ./apache-php7/sites-enabled:/etc/apache2/sites-enabled
   mariadb: 
     build: ./mariadb
     environment:
