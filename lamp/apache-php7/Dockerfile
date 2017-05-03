@@ -9,7 +9,7 @@ MAINTAINER Tino Nuon
 
 COPY php.ini /usr/local/etc/php/
 
-RUN apt-get update && apt-get upgrade
+RUN apt-get -y update && apt-get -y upgrade
 
 # Install and enable some PHP extensions
 #RUN docker-php-ext-enable \ 
@@ -22,3 +22,7 @@ RUN apt-get update && apt-get upgrade
 #    gmp \
 #    xml \
 #    zip
+
+# Add Symfony installer
+RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+RUN chmod a+x /usr/local/bin/symfony
