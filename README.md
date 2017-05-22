@@ -50,7 +50,7 @@ This will build and start containers specified in the docker-compose.yml.
 If you started the lamp stack, you should be able to access your server by typing the ip address 
 of the virtual machine in a browser. By default : 192.168.99.100. To get the ip address, type : 
 ```shell
-doker-machine ip
+docker-machine ip
 ```
 
 ### Rebuild Docker container
