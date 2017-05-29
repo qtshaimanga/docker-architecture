@@ -12,7 +12,8 @@ Select your Linux version and follow the instructions on this page :
 https://www.docker.com/community-edition
 
 ### On Windows
-Docker on Windows is only available for Windows 10 **PRO** and Microsoft Hyper-V. 
+Docker on Windows is only available for Windows 10 **PRO** and Microsoft Hyper-V. If it's your case, just download and install 
+Docker for Windows.
 To use Docker on other Windows version (Family...), you'll need to setup a virtual machine that will hosts a Linux OS and get Docker 
 working inside. 
 Use [Boot2Docker](http://boot2docker.io/) or (more recommended) Docker-Toolbox which installs everything needed to get Docker running 
@@ -22,6 +23,9 @@ Docker-Toolbox installs **VirtualBox**, creates a VM and provides an API to comm
 It also provides a pre-configured shell to run Docker commands,  **Docker Quickstart Terminal**. 
 ([Check here](https://github.com/tiangolo/babun-docker) if you want to use Babun/Cygwin).
 Finally, Docker-Compose allows to define and run multi-container Docker applications.
+
+### On Mac
+...
 
 ## Run Docker container
 ### Clone this repository
