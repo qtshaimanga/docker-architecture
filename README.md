@@ -16,7 +16,7 @@ Docker on Windows is only available for Windows 10 **PRO** and Microsoft Hyper-V
 To use Docker on other Windows version (Family...), you'll need to setup a virtual machine that will hosts a Linux OS and get Docker 
 working inside. 
 Use [Boot2Docker](http://boot2docker.io/) or (more recommended) Docker-Toolbox which installs everything needed to get Docker running 
-in development. [Download and install Docker-Toolbox] (https://www.docker.com/products/docker-toolbox) 
+in development. [Download and install Docker-Toolbox](https://www.docker.com/products/docker-toolbox) 
 
 Docker-Toolbox installs **VirtualBox**, creates a VM and provides an API to communicate with it through ```docker-machine``` commands
 It also provides a pre-configured shell to run Docker commands,  **Docker Quickstart Terminal**. 
@@ -30,10 +30,10 @@ git clone https://github.com/LaboratoireAIR/poc-docker-infra-dev.git
 ```
 You'll end up with a folder where each subfolders represent a Docker application : lamp, mern, nodejs...
 
-### Configure environment variables
+### Set environment variables
 Some applications might have environment variables that needs to be edited before running the container. These variables are located in 
 .env.dist file (".dist" extension for versioning purpose). 
-Make a copy of this file and rename it to ".env". Open your favorite editor, modify these variables and save your .env file.  
+Make a copy of this file and rename it to ".env". Open your favorite editor, modify these variables and save your .env file.
 
 ### Run Docker container
 Open your favorite shell and browse into the folder of the container you want to run. 
@@ -58,3 +58,16 @@ You might need to rebuild a container, after an update of the docker-compose.yml
 ```shell
 docker-compose build
 ```
+
+## Apache
+### Configuring Virtual Hosts
+A folder located at lamp/apache-php7/site-enabled is shared with the Apache container and allows you to manage virtual hosts as if it was on the server. Just add, remove and configure vhosts at your convenience. Don't forget to jump into the container and do a ``service apache2 reload``
+
+## MariaDB
+
+Data are persisted in the directory specified in the MYSQL_DATA_PATH variable in .env file.
+
+When configuring the database for your web application, you need to set the host to "i2r-mariadb". 
+
+## PHPMyAdmin
+To access PhpMyAdmin, go to http://localhost:8080. By default, username is "root". Leave the password field empty.
