@@ -1,0 +1,15 @@
+version: '2'
+
+services:
+  mongodb:
+    image: 'bitnami/mongodb:latest'
+    container_name: 'i2r-dev-mongodb'
+
+  node:
+    tty: true # Enables debugging capabilities when attached to this container.
+    build: ./node
+    container_name: 'i2r-dev-node'
+    ports: 
+      - '7000:8080'
+    volumes: 
+      - ${NODE_PROJECT_PATH}:/var/www
