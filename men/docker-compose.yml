@@ -1,9 +1,17 @@
-version: '2'
+version: '3'
 
 services:
   mongodb:
     image: 'bitnami/mongodb:latest'
     container_name: 'i2r-dev-mongodb'
+    restart: always
+    ports: 
+      - '27017:27017'
+    # This part is commented out as it raises an error with mongod (daemon) under Windows, due to some uncompatibility with 
+    # Windows system file. See https://github.com/bitnami/bitnami-docker-mongodb/issues/20#issuecomment-269773493
+    # @todo figure out workaround for Windows 10 users
+    # volumes: 
+    #  - ${MONGO_DATA_PATH}:/bitnami/mongodb
 
   node:
     tty: true # Enables debugging capabilities when attached to this container.
@@ -11,5 +19,6 @@ services:
     container_name: 'i2r-dev-node'
     ports: 
       - '7000:8080'
+      - '3000:3000'
     volumes: 
       - ${NODE_PROJECT_PATH}:/var/www
