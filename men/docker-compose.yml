@@ -1,24 +1,38 @@
 version: '3'
-
 services:
-  mongodb:
-    image: 'bitnami/mongodb:latest'
-    container_name: 'i2r-dev-mongodb'
-    restart: always
+  nginx-proxy:
+    image: 'jwilder/nginx-proxy:latest'
+    container_name: 'i2r-dev-nginx-proxy'
     ports: 
-      - '27017:27017'
-    # This part is commented out as it raises an error with mongod (daemon) under Windows, due to some uncompatibility with 
-    # Windows system file. See https://github.com/bitnami/bitnami-docker-mongodb/issues/20#issuecomment-269773493
-    # @todo figure out workaround for Windows 10 users
-    # volumes: 
-    #  - ${MONGO_DATA_PATH}:/bitnami/mongodb
-
+      - '81:80'
+    volumes: 
+      - /var/run/docker.sock:/tmp/docker.sock:ro # required
   node:
-    tty: true # Enables debugging capabilities when attached to this container.
+    tty: true # debugging mode (no exit without foreground process)
     build: ./node
     container_name: 'i2r-dev-node'
     ports: 
-      - '7000:8080'
       - '3000:3000'
     volumes: 
       - ${NODE_PROJECT_PATH}:/var/www
+  mongo:
+    image: 'mongo:latest'
+    container_name: 'i2r-dev-mongo'
+    ports: 
+      - '27017:27017'
+    restart: always
+    # Shared volume is disabled as there are some uncompabilities between Windows/MacOS file system and the file system that mongod expect.
+    # If you are a Unix user and need to store data locally, you can uncomment. Otherwise, let Docker write data inside the container and care 
+    # when removing them.
+    # see https://hub.docker.com/_/mongo/
+    # volumes: 
+    #  - ${MONGO_DATA_PATH}:/bitnami/mongodb
+  mongo-webadmin:
+    image: 'mongo-express'
+    container_name: 'i2r-dev-mongo-webadmin'
+    ports: 
+      - '8081:8081'
+    depends_on: 
+      - 'mongo'
+    environment:
+      - ME_CONFIG_MONGODB_SERVER=i2r-dev-mongo
