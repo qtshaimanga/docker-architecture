@@ -30,12 +30,14 @@ git clone https://github.com/LaboratoireAIR/poc-docker-infra-dev.git
 ```
 You'll end up with a folder where each subfolders represent a Docker stack : lamp, men...
 
-As of 31-05-2017, here is the list of all available container : 
+As of 02-06-2017, here is the list of all available container : 
 - i2r-dev-apache
 - i2r-dev-mariadb
 - i2r-dev-pma (PhpMyAdmin)
 - i2r-dev-node
-- i2r-dev-mongodb
+- i2r-dev-nginx-proxy
+- i2r-dev-mongo
+- i2r-dev-mongo-webadmin (Webtool for MongoDB)
 
 ### Set environment variables
 Some applications might have environment variables that needs to be edited before running the container. These variables are located in 
@@ -66,7 +68,9 @@ docker-machine ip
 
 To execute instructions inside a running container, use the `exec` command : 
 
-`docker exec -ti <container_name> <command>`
+```
+docker exec -ti <container_name> <command>
+```
 
 One of the common use of `exec` is to attach a container and get into its shell : 
 
@@ -157,7 +161,7 @@ Connect to the node container :
 ```
 docker exec -i i2r-dev-node bash
 ```
-Browse into your application folder, and launch :
+Browse into your application folder, and launch it :
 ```
 cd node-project
 npm start
@@ -165,12 +169,41 @@ npm start
 
 then your application should be available on your local ip and port, eg: `http://localhost:3000`
 
+## Manage applications with PM2
+PM2 is a process manager for Node.js applications. It can reload your apps,keep them alive forever and helps your in your system admin tasks. 
+PM2 is installed in the `i2r-dev-node` container.
+Here are some common commands you can execute with PM2 :
+```
+pm2 start index.js # Will start, daemonize and auto-restart index.js
+pm2 start npm -- start # do this instead of a simple npm start
+```
+To display current processes : 
+```
+pm2 list
+┌──────────┬────┬──────┬─────┬────────┬─────────┬────────┬─────┬───────────┬──────────┐
+│ App name │ id │ mode │ pid │ status │ restart │ uptime │ cpu │ mem       │ watching │
+├──────────┼────┼──────┼─────┼────────┼─────────┼────────┼─────┼───────────┼──────────┤
+│ npm      │ 0  │ fork │ 50  │ online │ 0       │ 5m     │ 0%  │ 40.9 MB   │ disabled │
+└──────────┴────┴──────┴─────┴────────┴─────────┴────────┴─────┴───────────┴──────────┘
+```
+
+Many other commands are available to start and stop processes, show logs, deploy etc... check the [official doc](https://www.npmjs.com/package/pm2)
+
 ## MongoDB
+
+`mongod` listens to the port **27017**.
+
 In the same principle than MariaDB container, data are persisted in the directory specified in the `MONGO_DATA_PATH` of the .env file (men/.env)
 
 **Warning** : Windows 10 PRO users won't be able to use this volume share principle as there's known uncompatibilities between windows file system and mongod daemon which except a Linux file system (see this [link](https://github.com/bitnami/bitnami-docker-mongodb/issues/20#issuecomment-269773493)). Therefore, data must live inside the container and be exported before any `docker-compose down`
 
-`mongod` listens to the port **27017**.
+**Update 02/06/2017**: this issue seems to happen to **all users of Docker Toolbox** (Windows & MacOS). [Source](https://hub.docker.com/_/mongo/) 
+
+## MongoDB administration
+A web administration tool is available on the `i2r-dev-mongo-webadmin` container. You can access it on [http://localhost:8081](). There's no identification needed. 
+
+## Nginx proxy
+The container `i2r-dev-nginx-proxy` is available if a proxy is needed to serve multiple node applications. See the [doc(https://hub.docker.com/r/jwilder/nginx-proxy/)] for more information.
 
 # Troubleshooting
 Here are some issues you can encounter, and how to resolve them.
@@ -194,6 +227,10 @@ Note : this problem might not exist on Docker for Windows.
 
 [Docker PhpMyAdmin image](https://hub.docker.com/r/phpmyadmin/phpmyadmin/)
 
-[Docker Bitnami Node image](https://hub.docker.com/r/bitnami/node/)
+[Docker Node official image](https://hub.docker.com/r/_/node/)
 
-[Docker Bitnami MongoDB image](https://github.com/bitnami/bitnami-docker-mongodb)
+[Docker MongoDB official image](https://hub.docker.com/_/mongo/)
+
+[Docker jwilder/nginx-proxy image](https://hub.docker.com/r/jwilder/nginx-proxy/)
+
+[PM2 - npmjs doc](https://www.npmjs.com/package/pm2)
