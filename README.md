@@ -117,6 +117,31 @@ You might then want to access to the application using a proper URL and thus nee
 192.168.99.100 api-tata.air-edf.io
 ```
 
+## Create a new Symfony application
+`i2r-dev-apache` comes with Symfony Installer in it, so you can attach directly to the container to initiate a new Symfony project. To do so, jump into the container : 
+```
+docker exec -ti i2r-dev-apache bash
+```
+Check that you are in the /var/www/html folder, and execute : 
+```
+symfony new my-sf-project
+```  
+A new SF project will be created inside "my-sf-project" folder.
+
+You can use the built-in server to quick-run your application : 
+```
+php bin/console server:run
+```
+Your app should be accessible on http://localhost:8000. By default, the web server listens to the port `8000` on the loopback device. You might need to change the socket if the above address remains unreachable.
+```
+php bin/console server:run 0.0.0.0:8000
+```
+Also, one last option that may be useful in docker environment is `---force` to force the web server start even if the process wasn't stopped correctly :
+```
+php bin/console server:run 0.0.0.0:8000 --force
+```
+(Useful cause CTRL+C won't stop the current process inside the container but will stop the container attachment. So if you CTRL+C to stop the web server, it won't work and you will just interrupt the container attachment)
+
 ## Apache
 ### Configuring Virtual Hosts
 A folder located at lamp/apache-php7/site-enabled is shared with the Apache container and allows you to manage virtual hosts as if it was on the server. Just add, remove and configure vhosts at your convenience. 
