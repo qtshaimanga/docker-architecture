@@ -4,6 +4,7 @@ version: '3'
 services:
   apache-php7:
     build: ./apache-php7
+    container_name: i2r-dev-apache
     ports:
       - '80:80'
       - '8000:8000'
@@ -12,7 +13,18 @@ services:
       - ./apache-php7/sites-enabled:/etc/apache2/sites-enabled
   mariadb: 
     build: ./mariadb
+    container_name: i2r-dev-mariadb
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_ROOT_PASSWORD=root
     ports:
       - '3306:3306'
+    volumes: 
+      - ${MYSQL_DATA_PATH}:/bitnami/mariadb
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: i2r-dev-pma
+    links: 
+      - mariadb:db
+    restart: always
+    ports:
+      - '8080:80'
