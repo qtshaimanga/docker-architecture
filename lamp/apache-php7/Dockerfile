@@ -11,6 +11,8 @@ COPY php.ini /usr/local/etc/php/
 
 RUN apt-get -y update && apt-get -y upgrade
 
+RUN docker-php-ext-install pdo_mysql
+
 # Install and enable some PHP extensions
 #RUN docker-php-ext-enable \ 
 #    gd \
