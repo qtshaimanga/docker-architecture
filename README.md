@@ -140,7 +140,7 @@ Your app should be accessible on http://localhost:8000. By default, the web serv
 ```
 php bin/console server:run 0.0.0.0:8000
 ```
-Also, one last option that may be useful in docker environment is `---force` to force the web server start even if the process wasn't stopped correctly :
+Also, one last option that may be useful in docker environment is `--force` to force the web server start even if the process wasn't stopped correctly :
 ```
 php bin/console server:run 0.0.0.0:8000 --force
 ```
