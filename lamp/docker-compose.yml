@@ -15,7 +15,7 @@ services:
     build: ./mariadb
     container_name: i2r-dev-mariadb
     environment:
-      - ALLOW_EMPTY_PASSWORD=yes
+      - MARIADB_ROOT_PASSWORD=root
     ports:
       - '3306:3306'
     volumes: 
