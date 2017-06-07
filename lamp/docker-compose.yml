@@ -11,19 +11,19 @@ services:
     volumes:
       - ${DEV_PROJECT_PATH}:/var/www/html
       - ./apache-php7/sites-enabled:/etc/apache2/sites-enabled
-  mariadb: 
+  mariadb:
     build: ./mariadb
     container_name: i2r-dev-mariadb
     environment:
-      - MARIADB_ROOT_PASSWORD=root
+      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     ports:
       - '3306:3306'
-    volumes: 
+    volumes:
       - ${MYSQL_DATA_PATH}:/bitnami/mariadb
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     container_name: i2r-dev-pma
-    links: 
+    links:
       - mariadb:db
     restart: always
     ports:
