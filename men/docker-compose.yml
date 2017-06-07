@@ -1,12 +1,5 @@
 version: '3'
 services:
-  nginx-proxy:
-    image: 'jwilder/nginx-proxy:latest'
-    container_name: 'i2r-dev-nginx-proxy'
-    ports:
-      - '81:80'
-    volumes:
-      - /var/run/docker.sock:/tmp/docker.sock:ro # required
   node:
     tty: true # debugging mode (no exit without foreground process)
     build: ./node
@@ -14,7 +7,7 @@ services:
     ports:
       - '3000:3000'
       - '7000-7004:7000-7004'
-    volumes:
+    volumes: 
       - ${NODE_PROJECT_PATH}:/var/www
   mongo:
     image: 'mongo:latest'
