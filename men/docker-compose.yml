@@ -3,37 +3,37 @@ services:
   nginx-proxy:
     image: 'jwilder/nginx-proxy:latest'
     container_name: 'i2r-dev-nginx-proxy'
-    ports: 
+    ports:
       - '81:80'
-    volumes: 
+    volumes:
       - /var/run/docker.sock:/tmp/docker.sock:ro # required
   node:
     tty: true # debugging mode (no exit without foreground process)
     build: ./node
     container_name: 'i2r-dev-node'
-    ports: 
+    ports:
       - '3000:3000'
-      - '7000:7000'
-    volumes: 
+      - '7000-7004:7000-7004'
+    volumes:
       - ${NODE_PROJECT_PATH}:/var/www
   mongo:
     image: 'mongo:latest'
     container_name: 'i2r-dev-mongo'
-    ports: 
+    ports:
       - '27017:27017'
     restart: always
     # Shared volume is disabled as there are some uncompabilities between Windows/MacOS file system and the file system that mongod expect.
-    # If you are a Unix user and need to store data locally, you can uncomment. Otherwise, let Docker write data inside the container and care 
+    # If you are a Unix user and need to store data locally, you can uncomment. Otherwise, let Docker write data inside the container and care
     # when removing them.
     # see https://hub.docker.com/_/mongo/
-    # volumes: 
-    #  - ${MONGO_DATA_PATH}:/bitnami/mongodb
+    # volumes:
+    #  - ${MONGO_DATA_PATH}:/data/db
   mongo-webadmin:
     image: 'mongo-express'
     container_name: 'i2r-dev-mongo-webadmin'
-    ports: 
+    ports:
       - '8081:8081'
-    depends_on: 
+    depends_on:
       - 'mongo'
     environment:
       - ME_CONFIG_MONGODB_SERVER=i2r-dev-mongo
