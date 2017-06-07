@@ -205,6 +205,7 @@ Here are some common commands you can execute with PM2 :
 ```
 pm2 start index.js # Will start, daemonize and auto-restart index.js
 pm2 start npm -- start # do this instead of a simple npm start
+pm2 start npm -- run dev # will execute a "npm run dev"
 ```
 To display current processes :
 ```
@@ -216,7 +217,64 @@ pm2 list
 └──────────┴────┴──────┴─────┴────────┴─────────┴────────┴─────┴───────────┴──────────┘
 ```
 
+Also, if you launch many processes in the same time but some of them have the same entrypoint (eg: `node index.js`) or the same command (eg: `npm run dev`), they will all appear in the pm2 process list as `node` or `npm`. To get clearer vision, you can name them :  
+
+```
+pm2 start index.js --name "First App"
+pm2 start npm --name "Second App" -- run dev
+
+pm2 list
+┌─────────────┬────┬──────┬─────┬─────────┬─────────┬────────┬─────┬───────────┬──────────┐
+│ App name    │ id │ mode │ pid │ status  │ restart │ uptime │ cpu │ mem       │ watching │
+├─────────────┼────┼──────┼─────┼─────────┼─────────┼────────┼─────┼───────────┼──────────┤
+│ First App   │ 1  │ fork │ 505 │ online  │ 0       │ 11m    │ 0%  │ 40.6 MB   │ disabled │
+│ Second App  │ 2  │ fork │ 0   │ online  │ 15      │ 0      │ 0%  │ 0 B       │ disabled │
+└─────────────┴────┴──────┴─────┴─────────┴─────────┴────────┴─────┴───────────┴──────────┘
+
+
+```
+To get more information about a process, you can do a `pm2 show <id|name>`
+
 Many other commands are available to start and stop processes, show logs, deploy etc... check the [official doc](https://www.npmjs.com/package/pm2)
+
+## Use Apache proxy to serve live Node applications <a id="ApacheProxy"></a>
+You can use Apache and vhost system to serve your live running NodeJS applications running on a certain port in the `i2r-dev-node` container. The principle is the same than creating virtual host excepting you need to add the `ProxyPass` and `ProxyPassReverse` directives in order to redirect the request toward the Node container. 
+
+You'll find in the `apache-php7/sites-enabled` folder two samples to help you in the setup. Basically, a vhost config will look like : 
+
+```
+<VirtualHost *:80>
+
+    ServerName bernard.air-edf.io
+    ProxyRequests off
+
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+
+    <Location />
+        ProxyPass http://i2r-dev-node:7000/
+        ProxyPassReverse http://i2r-dev-node:7000/
+    </Location>
+    
+    ErrorLog /var/log/test.air-edf_error.log
+    LogLevel warn
+    CustomLog /var/log/test.air-edf_access.log combined
+
+</VirtualHost>
+```
+
+Beneath, the docker lamp stack has its network linked to the men stack, allowing to use the container name in the value of `ProxyPass`. 
+
+Don't forget to check if your node app is well running in the Node container, also on the specified port. If you encounter an Apache Error, it's likely coming from that.
+
+And finally, don't forget to fill your `host` file to make the dns translation on your local network :
+
+```
+127.0.0.1       bernard.air-edf.io
+127.0.0.1       toto.air-edf.io
+``` 
 
 ## MongoDB
 
@@ -231,8 +289,9 @@ In the same principle than MariaDB container, data are persisted in the director
 ## MongoDB administration
 A web administration tool is available on the `i2r-dev-mongo-webadmin` container. You can access it on [http://localhost:8081](). There's no identification needed.
 
-## Nginx proxy
-The container `i2r-dev-nginx-proxy` is available if a proxy is needed to serve multiple node applications. See the [doc(https://hub.docker.com/r/jwilder/nginx-proxy/)] for more information.
+## ~~Nginx proxy~~
+~~The container `i2r-dev-nginx-proxy` is available if a proxy is needed to serve multiple node applications. See the [doc(https://hub.docker.com/r/jwilder/nginx-proxy/)] for more information.~~
+ (removed, Apache will do the job, see [Apache Proxy section above](#ApacheProxy))
 
 # Troubleshooting
 Here are some issues you can encounter, and how to resolve them.
@@ -259,7 +318,5 @@ Note : this problem might not exist on Docker for Windows.
 [Docker Node official image](https://hub.docker.com/r/_/node/)
 
 [Docker MongoDB official image](https://hub.docker.com/_/mongo/)
-
-[Docker jwilder/nginx-proxy image](https://hub.docker.com/r/jwilder/nginx-proxy/)
 
 [PM2 - npmjs doc](https://www.npmjs.com/package/pm2)
