@@ -1,3 +1,1 @@
 # Ignore Docker Compose environment variables file
-.env
-lamp/mariadb/shared
