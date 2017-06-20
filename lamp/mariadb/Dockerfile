@@ -4,4 +4,4 @@
 
 FROM bitnami/mariadb:latest
 
-MAINTAINER Tino Nuon
+MAINTAINER Quentin Tshaimanga

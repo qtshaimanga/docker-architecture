@@ -1,11 +1,11 @@
 ############################################################
-# This Dockerfile will build the container for Apache 
-# and PHP 7 
+# This Dockerfile will build the container for Apache
+# and PHP 7
 ############################################################
 
 FROM php:7.0-apache
 
-MAINTAINER Tino Nuon
+MAINTAINER Quentin Tshaimanga
 
 COPY php.ini /usr/local/etc/php/
 
@@ -22,7 +22,7 @@ RUN a2enmod proxy proxy_http
 RUN docker-php-ext-install pdo_mysql
 
 # Install and enable some PHP extensions
-#RUN docker-php-ext-enable \ 
+#RUN docker-php-ext-enable \
 #    gd \
 #    curl \
 #    mcrypt \
@@ -34,5 +34,5 @@ RUN docker-php-ext-install pdo_mysql
 #    zip
 
 # Add Symfony installer
-RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
-RUN chmod a+x /usr/local/bin/symfony
+# RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
+# RUN chmod a+x /usr/local/bin/symfony

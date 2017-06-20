@@ -1,7 +1,7 @@
 # Compose Docker container with sub-containers apache-php7 & mariadb
 # Each sub-containers are described by their own Dockerfile
 version: '3'
-networks: 
+networks:
   men_default:
     external: true
 services:
@@ -14,10 +14,10 @@ services:
     volumes:
       - ${DEV_PROJECT_PATH}:/var/www/html
       - ./apache-php7/sites-enabled:/etc/apache2/sites-enabled
-    networks: 
+    networks:
       - default
       - men_default
-    external_links: 
+    external_links:
       - i2r-dev-node
   mariadb:
     build: ./mariadb
