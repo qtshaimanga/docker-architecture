@@ -9,7 +9,15 @@ MAINTAINER Quentin Tshaimanga
 
 COPY php.ini /usr/local/etc/php/
 
-RUN apt-get -y update && apt-get -y upgrade
+ARG DEBIAN_FRONTEND=noninteractive
+
+# Update
+RUN apt-get -y update && \
+    apt-get install --assume-yes apt-utils
+
+# Install SQLite 3
+RUN apt-get install -y sqlite3 && \
+    apt-get install -y libsqlite3-dev
 
 # Apache
 # Enable rewrite module for Symfony
@@ -18,21 +26,14 @@ RUN a2enmod rewrite
 # Enable proxy module for redirecting to node applications
 RUN a2enmod proxy proxy_http
 
-# PHP : install PDO_mysql extension
-RUN docker-php-ext-install pdo_mysql
+# PHP : install PDO extension
+RUN docker-php-ext-install pdo_mysql pdo_sqlite
 
-# Install and enable some PHP extensions
-#RUN docker-php-ext-enable \
-#    gd \
-#    curl \
-#    mcrypt \
-#    mbstring \
-#    intl \
-#    pdo_sqlite \
-#    gmp \
-#    xml \
-#    zip
+# Install CURL
+RUN apt-get -y install curl nano
 
-# Add Symfony installer
-# RUN curl -LsS https://symfony.com/installer -o /usr/local/bin/symfony
-# RUN chmod a+x /usr/local/bin/symfony
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Upgrade
+RUN apt-get -y upgrade
