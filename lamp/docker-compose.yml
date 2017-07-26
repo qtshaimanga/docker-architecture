@@ -23,6 +23,8 @@ services:
     build: ./mariadb
     container_name: i2r-dev-mariadb
     environment:
+      - MYSQL_USER=${MARIADB_USER}
+      - MYSQL_PASSWORD=${MARIADB_PASSWORD}
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     ports:
       - '3306:3306'
