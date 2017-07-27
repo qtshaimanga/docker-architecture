@@ -3,7 +3,7 @@ services:
   node:
     tty: true # debugging mode (no exit without foreground process)
     build: ./node
-    container_name: 'i2r-dev-node'
+    container_name: 'service-node'
     ports:
       - '3000:3000'
       - '7000-7004:7000-7004'
@@ -11,7 +11,7 @@ services:
       - ${NODE_PROJECT_PATH}:/var/www
   mongo:
     image: 'mongo:latest'
-    container_name: 'i2r-dev-mongo'
+    container_name: 'service-mongo'
     ports:
       - '27017:27017'
     restart: always
@@ -23,7 +23,7 @@ services:
      - ${MONGO_DATA_PATH}:/data/db
   mongo-webadmin:
     image: 'mongo-express'
-    container_name: 'i2r-dev-mongo-webadmin'
+    container_name: 'service-mongo-webadmin'
     ports:
       - '8081:8081'
     depends_on:

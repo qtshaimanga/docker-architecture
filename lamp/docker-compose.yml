@@ -7,7 +7,7 @@ networks:
 services:
   apache-php7:
     build: ./apache-php7
-    container_name: i2r-dev-apache
+    container_name: service-apache
     ports:
       - '80:80'
       - '8000:8000'
@@ -22,7 +22,7 @@ services:
       - i2r-dev-node
   mariadb:
     build: ./mariadb
-    container_name: i2r-dev-mariadb
+    container_name: service-mariadb
     environment:
       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
     ports:
@@ -31,7 +31,7 @@ services:
       - ${MYSQL_DATA_PATH}:/var/lib/mysql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
-    container_name: i2r-dev-pma
+    container_name: service-pma
     links:
       - mariadb:db
     restart: always
