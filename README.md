@@ -8,7 +8,7 @@
 - service-pma (PhpMyAdmin)
 
 ###### MEN (networks true)
-- service-node ()
+- service-node
 - service-mongo
 - service-mongo-webadmin (Webtool for MongoDB)
 

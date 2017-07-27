@@ -19,12 +19,12 @@ services:
       - default
       - men_default
     external_links:
-      - i2r-dev-node
+      - service-node
   mariadb:
     build: ./mariadb
     container_name: service-mariadb
     environment:
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     ports:
       - '3306:3306'
     volumes:

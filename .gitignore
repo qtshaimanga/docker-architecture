@@ -7,3 +7,10 @@
 *.DS_Store
 
 *node_modules/*
+
+
+lamp/mariadb/shared/*
+
+men/node/mongodb/*
+
+apache-php7/_host-template*
