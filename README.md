@@ -10,3 +10,12 @@ As of 02-06-2017, here is the list of all available container :
 - i2r-dev-nginx-proxy
 - i2r-dev-mongo
 - i2r-dev-mongo-webadmin (Webtool for MongoDB)
+
+
+> docker exec -i containername
+
+> docker-compose up -d
+> docker-compose restart
+> docker-compose down
+
+>pm2 start projectpath
