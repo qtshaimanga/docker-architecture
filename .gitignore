@@ -9,8 +9,8 @@
 *node_modules/*
 
 
-lamp/mariadb/shared/*
+#lamp/mariadb/shared/*
 
-men/node/mongodb/*
+#men/node/mongodb/*
 
-apache-php7/_host-template*
+#apache-php7/_host-template*
