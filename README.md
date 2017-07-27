@@ -1,27 +1,31 @@
 # Docker environment
-This repository provides docker images to setup with ease developments environments.
-To deploy and run it, you will need Docker and Docker Compose. Follow the instructions below, depending on your OS.
 
-As of 02-06-2017, here is the list of all available container :
+### 1. Available container :
+
+###### LAMP
 - service-apache
 - service-mariadb
 - service-pma (PhpMyAdmin)
 
-- service-node
+###### MEN (networks true)
+- service-node ()
 - service-mongo
 - service-mongo-webadmin (Webtool for MongoDB)
 
+### 2. Informations:
+- create sub folder for buiding
+- set .env
 
-> docker exec -i containername bash
+````bash
+- docker-compose down
+- docker-compose build
+- docker-compose up -d
+- docker-compose restart
+````
 
-> docker-compose up -d
+- Manage vhosts
 
-> docker-compose restart
-
-> docker-compose down
-
->pm2 start projectpath
-
-> create files
-
-> set .env
+````bash
+- docker exec -i containername bash
+- pm2 start projectpath
+````
