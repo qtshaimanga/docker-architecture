@@ -5,3 +5,5 @@
 # Ignore config file
 
 *.DS_Store
+
+*node_modules/*

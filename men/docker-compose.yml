@@ -7,7 +7,7 @@ services:
     ports:
       - '3000:3000'
       - '7000-7004:7000-7004'
-    volumes: 
+    volumes:
       - ${NODE_PROJECT_PATH}:/var/www
   mongo:
     image: 'mongo:latest'
@@ -19,8 +19,8 @@ services:
     # If you are a Unix user and need to store data locally, you can uncomment. Otherwise, let Docker write data inside the container and care
     # when removing them.
     # see https://hub.docker.com/_/mongo/
-    # volumes:
-    #  - ${MONGO_DATA_PATH}:/data/db
+    volumes:
+     - ${MONGO_DATA_PATH}:/data/db
   mongo-webadmin:
     image: 'mongo-express'
     container_name: 'i2r-dev-mongo-webadmin'
