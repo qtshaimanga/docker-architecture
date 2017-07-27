@@ -19,3 +19,6 @@ As of 02-06-2017, here is the list of all available container :
 > docker-compose down
 
 >pm2 start projectpath
+
+> create files
+> set .env
