@@ -20,8 +20,6 @@ RUN apt-get install -y sqlite3 && \
     apt-get install -y libsqlite3-dev
 
 # Apache Conf
-# SSL
-RUN a2enmod ssl
 # Enable rewrite module for Symfony
 RUN a2enmod rewrite
 # Enable proxy module for redirecting to node applications
@@ -35,6 +33,8 @@ RUN apt-get -y install curl nano
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# SSL
 
 # Upgrade
 RUN apt-get -y upgrade
