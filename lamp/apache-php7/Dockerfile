@@ -36,9 +36,5 @@ RUN apt-get -y install curl nano
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install SSL
-RUN apt-get install python-certbot-apache
-#RUN cerbot -auto
-
 # Upgrade
 RUN apt-get -y upgrade
