@@ -44,7 +44,7 @@ run /opt/letsencrypt/letsencrypt-auto --os-packages-only
 ADD ssl/ssl-renewal.sh /usr/local/sbin/
 ADD ssl/ssl-install.sh /home/
 
-CMD /opt/letsencrypt/letsencrypt-auto certonly --standalone -m q.tshaimanga@gmail.com --agree-tos -d quentintshaimanga.fr -d www.quentintshaimanga.fr
+CMD /opt/letsencrypt/letsencrypt-auto certonly --standalone -m q.tshaimanga@gmail.com --agree-tos -d quentintshaimanga.fr
 # CMD sh /home/ssl-install.sh quentin.fr
 
 # Upgrade
