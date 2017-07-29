@@ -10,7 +10,7 @@ services:
     container_name: service-apache
     ports:
       - '80:80'
-      - '443:443'
+      # - '443:443'
       - '8000:8000'
     #tty: false
     volumes:
