@@ -44,6 +44,7 @@ run /opt/letsencrypt/letsencrypt-auto --noninteractive --os-packages-only
 ADD ssl/ssl-renewal.sh /usr/local/sbin/
 ADD ssl/ssl-install.sh /home/
 
+## Adress
 CMD /opt/letsencrypt/letsencrypt-auto --noninteractive certonly --preferred-challenges tls-sni -m q.tshaimanga@gmail.com --agree-tos -d duras.quentintshaimanga.fr --standalone
 # CMD sh /home/ssl-install.sh quentin.fr
 
