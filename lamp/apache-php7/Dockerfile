@@ -20,9 +20,9 @@ RUN apt-get install -y sqlite3 && \
     apt-get install -y libsqlite3-dev
 
 # Apache Conf
-# Enable rewrite module for Symfony
+## Enable rewrite module for Symfony
 RUN a2enmod rewrite
-# Enable proxy module for redirecting to node applications
+## Enable proxy module for redirecting to node applications
 RUN a2enmod proxy proxy_http
 
 # PHP : install PDO extension
@@ -34,7 +34,18 @@ RUN apt-get -y install curl nano
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
+# Install Git
+RUN apt-get -y install git
+
 # SSL
+RUN git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
+run /opt/letsencrypt/letsencrypt-auto --os-packages-only
+
+ADD ssl/ssl-renewal.sh /usr/local/sbin/
+ADD ssl/ssl-install.sh /home/
+
+CMD /opt/letsencrypt/letsencrypt-auto certonly --standalone -m q.tshaimanga@gmail.com --agree-tos -d quentintshaimanga.fr -d www.quentintshaimanga.fr
+# CMD sh /home/ssl-install.sh quentin.fr
 
 # Upgrade
 RUN apt-get -y upgrade

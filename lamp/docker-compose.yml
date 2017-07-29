@@ -10,11 +10,13 @@ services:
     container_name: service-apache
     ports:
       - '80:80'
+      - '443:443'
       - '8000:8000'
     volumes:
       - ${DEV_PROJECT_PATH}:/var/www/html
-      - ${DEV_API_PATH}:/var/www/api
       - ${DEV_VHOST_PATH}:/etc/apache2/sites-enabled
+    environment:
+      - DOMAINES=${SSL_HOST_DOMAINES}
     networks:
       - default
       - men_default
