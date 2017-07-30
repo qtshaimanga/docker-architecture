@@ -16,8 +16,8 @@ services:
     volumes:
       - ${DEV_PROJECT_PATH}:/var/www/html
       - ${DEV_VHOST_PATH}:/etc/apache2/sites-enabled
-      - /etc/letsencrypt:/etc/letsencrypt
-      - /var/lib/letsencrypt:/var/lib/letsencrypt
+      - ${LETSENCRYPT_PATH}:/etc/letsencrypt
+      - ${LETSENCRYPT_LIB}:/var/lib/letsencrypt
     environment:
       - DOMAINES=${SSL_HOST_DOMAINES}
     networks:

@@ -47,7 +47,7 @@ ADD ssl/ssl-renewal.sh /usr/local/sbin/
 ADD ssl/ssl-install.sh /home/
 
 ## Adress
-CMD sh /home/ssl-install.sh quentin.fr
+#CMD sh /home/ssl-install.sh quentin.fr
 
 # Upgrade
 RUN apt-get -y upgrade
