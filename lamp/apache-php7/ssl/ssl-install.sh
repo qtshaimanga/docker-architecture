@@ -9,9 +9,9 @@ else
 
 	echo "DOMAINES are $DOMAINES"
 
-	/opt/letsencrypt/letsencrypt-auto --noninteractive --apache --standalone certonly --renew-by-default --preferred-challenges tls-sni --email q.tshaimanga@gmail.com --agree-tos --domaines quentintshaimanga.fr
+	/opt/letsencrypt/letsencrypt-auto --noninteractive --apache --standalone certonly --renew-by-default --preferred-challenges tls-sni --email q.tshaimanga@gmail.com --agree-tos --d quentintshaimanga.fr
 	/usr/sbin/service apache2 reload
-	
+
 	# for DOMAINE in $DOMAINES;
 	# do
 		# /opt/letsencrypt/letsencrypt-auto --apache -m q.tshaimanga@gmail.com --agree-tos true -d $DOMAINE
