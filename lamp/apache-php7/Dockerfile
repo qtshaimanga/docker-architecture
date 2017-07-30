@@ -47,7 +47,7 @@ ADD ssl/ssl-renewal.sh /usr/local/sbin/
 ADD ssl/ssl-install.sh /home/
 
 ## Adress
-CMD /opt/letsencrypt/letsencrypt-auto --standalone certonly --text --email q.tshaimanga@gmail.com --agree-tos -d quentintshaimanga.fr --verbose --renew-by-default --preferred-challenges http
+CMD /opt/letsencrypt/letsencrypt-auto --standalone certonly --email q.tshaimanga@gmail.com --agree-tos -d quentintshaimanga.fr --renew-by-default --preferred-challenges tls-sni
 # CMD sh /home/ssl-install.sh quentin.fr
 
 # Upgrade
