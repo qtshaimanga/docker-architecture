@@ -27,6 +27,8 @@ RUN a2enmod rewrite
 ## Enable proxy module for redirecting to node applications
 RUN a2enmod proxy proxy_http
 
+RUN a2enmod ssl
+
 # PHP : install PDO extension
 RUN docker-php-ext-install pdo_mysql pdo_sqlite
 
@@ -37,14 +39,12 @@ RUN apt-get -y install curl nano
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install Git
-RUN apt-get -y install git
+# RUN apt-get -y install git
 
 # SSL
 # RUN git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
 # RUN /opt/letsencrypt/letsencrypt-auto --noninteractive --os-packages-only
-
-ADD ssl/ssl-renewal.sh /usr/local/sbin/
-
+# ADD ssl/ssl-renewal.sh /usr/local/sbin/
 # ADD ssl/ssl-install.sh /home/
 ## Adress
 # CMD sh /home/ssl-install.sh quentin.fr

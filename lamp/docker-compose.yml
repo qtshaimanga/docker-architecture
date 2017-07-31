@@ -12,14 +12,12 @@ services:
       - '80:80'
       - '443:443'
       - '8000:8000'
-    # tty: true
+    tty: true
     volumes:
       - ${DEV_PROJECT_PATH}:/var/www/html
       - ${DEV_VHOST_PATH}:/etc/apache2/sites-enabled
       - ${LETSENCRYPT_PATH}:/etc/letsencrypt
       - ${LETSENCRYPT_LIB}:/var/lib/letsencrypt
-    # environment:
-    #   - DOMAINES=${SSL_HOST_DOMAINES}
     networks:
       - default
       - men_default
