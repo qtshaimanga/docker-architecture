@@ -40,12 +40,12 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN apt-get -y install git
 
 # SSL
-RUN git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
-run /opt/letsencrypt/letsencrypt-auto --noninteractive --os-packages-only
+# RUN git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
+# RUN /opt/letsencrypt/letsencrypt-auto --noninteractive --os-packages-only
 
 ADD ssl/ssl-renewal.sh /usr/local/sbin/
-ADD ssl/ssl-install.sh /home/
 
+# ADD ssl/ssl-install.sh /home/
 ## Adress
 # CMD sh /home/ssl-install.sh quentin.fr
 
