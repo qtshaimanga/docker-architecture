@@ -8,7 +8,6 @@ iptables -t filter -X
 iptables -t filter -P INPUT DROP
 iptables -t filter -P FORWARD DROP
 iptables -t filter -P OUTPUT DROP
-echo "On interdit tout"
 
 # On autorise les connexions déjà établie
 iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -59,7 +58,7 @@ iptables -t filter -A OUTPUT -p tcp --dport 110 -j ACCEPT
 ## IMAP
 iptables -t filter -A INPUT -p tcp --dport 143 -j ACCEPT
 iptables -t filter -A OUTPUT -p tcp --dport 143 -j ACCEPT
-echo "trafic IMAP sur le port 143 autorisé"
+
 ## POP3S
 iptables -t filter -A INPUT -p tcp --dport 995 -j ACCEPT
 iptables -t filter -A OUTPUT -p tcp --dport 995 -j ACCEPT

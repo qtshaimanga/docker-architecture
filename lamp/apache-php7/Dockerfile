@@ -9,7 +9,7 @@ MAINTAINER Quentin Tshaimanga
 
 USER root
 
-COPY php.ini /usr/local/etc/php/
+COPY php/php.ini /usr/local/etc/php/
 
 ARG DEBIAN_FRONTEND=noninteractive
 
