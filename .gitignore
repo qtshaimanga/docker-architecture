@@ -1,17 +1,17 @@
 # Ignore Docker Compose environment variables file
-
 *.env
 
 # Ignore config file
-
 *.DS_Store
-
 *node_modules/*
 
-
+#LAMP PROD
 lamp/mariadb/shared/*
-#lamp/sites-enabled/*
+lamp/apache-php7/_old*
+#lamp/php7/sites-enabled/*
+#lamp/apache-php7/authorized_keys/*
+#lamp/apache-php7/var/www/html/*
+#lamp/apache-php7/var/www/logs/*
 
+#MEN
 men/node/mongodb/*
-
-apache-php7/_host-template*
