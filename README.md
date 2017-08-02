@@ -77,38 +77,38 @@ docker run -it --rm -p 443:443 -p 80:80 --name certbot \
   - change password : passwd username
 - /etc/ssh/sshd_config :
  - change this :
-  - add: HostKey /etc/ssh/ssh_host_dsa_key
-  - change time who user can logged : LoginGraceTime 20s
-  - number of erros possible : MaxAuthTries 1
-  - PubkeyAuthentication yes
-  - AuthorizedKeysFile .ssh/authorized_keys
-  - RSAAuthentication no
-  - UsePAM no
-  - KerberosAuthentication no
-  - GSSAPIAuthentication no
-  - PasswordAuthentication no
-  - AllowGroups sshusers
-  - MaxStartups 2
+    - add: HostKey /etc/ssh/ssh_host_dsa_key
+    - change time who user can logged : LoginGraceTime 20s
+    - number of erros possible : MaxAuthTries 1
+    - PubkeyAuthentication yes
+    - AuthorizedKeysFile .ssh/authorized_keys
+    - RSAAuthentication no
+    - UsePAM no
+    - KerberosAuthentication no
+    - GSSAPIAuthentication no
+    - PasswordAuthentication no
+    - AllowGroups sshusers
+    - MaxStartups 2
 - crypte the know_host file (delete old)
-  - ssh-keygen -H -f ~/.ssh/known_hosts
+    - ssh-keygen -H -f ~/.ssh/known_hosts
 - change paswword ssh key : ssh-keygen -p -f ~/.ssh/id_server
 - protect about known security flow: openssh-server
 - user ssh-agent for cached ssh key :
-  - add : ssh-add ~/.ssh/id_rsa.pub  (ssh -T git@github.com)
-  - list : ss-add -l
-  - delete : ssh-add -D
+    - add : ssh-add ~/.ssh/id_rsa.pub  (ssh -T git@github.com)
+    - list : ss-add -l
+    - delete : ssh-add -D
 - remote control : ssh $remote_user@$remote_host '$cmd'
 - iptables:
-  - apt-get install iptables
-  - list of rules : iptables -L (defaut = acceptation)
-  - nb:sudo iptables -P INPUT DROP (down all connection)
-  - script sh:
-    - sudo nano firewall.sh
-      - [ list all programs used in current] netstate --net -npl
-      - execute scipt at the start  :
-        - move to /etc/init.d
-        - sudo chmod +x firewall
-        - sudo update-rc.d firewall
+    - apt-get install iptables
+    - list of rules : iptables -L (defaut = acceptation)
+    - nb:sudo iptables -P INPUT DROP (down all connection)
+    - script sh:
+      - sudo nano firewall.sh
+        - [ list all programs used in current] netstate --net -npl
+        - execute scipt at the start  :
+          - move to /etc/init.d
+          - sudo chmod +x firewall
+          - sudo update-rc.d firewall
 - uncomplicated firewall ufw (managing iptables):
   - iptables -t filter -F
   - iptables -t filter -X
