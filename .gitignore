@@ -13,5 +13,6 @@ lamp/apache-php7/_old*
 #lamp/apache-php7/var/www/html/*
 #lamp/apache-php7/var/www/logs/*
 
-#MEN
+#MEN PROD
 men/node/mongodb/*
+#men/node/var/www/html/*
