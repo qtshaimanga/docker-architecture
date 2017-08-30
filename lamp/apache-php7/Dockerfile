@@ -38,18 +38,16 @@ RUN apt-get -y install curl nano
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Install Git
-# RUN apt-get -y install git
-# Install SSL
-# RUN git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
-# RUN /opt/letsencrypt/letsencrypt-auto --noninteractive --os-packages-only
-# ADD ssl/ssl-renewal.sh /usr/local/sbin/
-# ADD ssl/ssl-install.sh /home/
-## Adress
-# CMD sh /home/ssl-install.sh quentin.fr
+# Install iptables
+RUN apt-get install iptables
+ADD iptables/firewall.sh /etc/init.d/
+RUN chmod +x /etc/init.d/firewall
+RUN update-rc.d /etc/init.d/firewall
 
 # Install fail2ban
 RUN apt-get install fail2ban
+ADD fail2ban/jail.local /etc/fail2ban/
+RUN service fail2ban restart
 
 # Upgrade
 RUN apt-get -y upgrade

@@ -1,0 +1,23 @@
+<VirtualHost *:80>
+
+    ServerName subdomain.i2r.io
+    ServerAlias www. subdomain.i2r.io
+    ServerAdmin quentin.tshaimanga@edf.fr
+
+    ProxyRequests off
+
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+    </Proxy>
+
+    <Location />
+        ProxyPass http://i2r-dev-node:7001/
+        ProxyPassReverse http://i2r-dev-node:7001/
+    </Location>
+
+    ErrorLog /var/log/project.i2r-dev-node_error.log
+    LogLevel warn
+    CustomLog /var/log/project.i2r-dev-node_access.log combined
+
+</VirtualHost>

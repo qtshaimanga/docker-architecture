@@ -1,0 +1,22 @@
+<IfModule mod_ssl.c>
+  <VirtualHost *:443>
+
+    ServerName subdomain.i2r.io
+    ServerAlias www.subdomain.i2r.io
+    ServerAdmin quentin.tshaimanga@edf.fr
+
+    DocumentRoot /var/www/html/project
+
+    <Directory /var/www/html/project >
+      Options +FollowSymlinks +Indexes
+      AllowOverride All
+    </Directory>
+
+    ErrorLog /var/log/project.apache_error.log
+    CustomLog /var/log/project.apache_access.log combined
+
+    SSLCertificateFile /etc/letsencrypt/live/project.i2r.io/fullchain.pem
+    SSLCertificateKeyFile /etc/letsencrypt/live/project.i2r.io/privkey.pem
+
+  </VirtualHost>
+</IfModule>

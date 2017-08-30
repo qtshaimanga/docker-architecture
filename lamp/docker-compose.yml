@@ -18,7 +18,6 @@ services:
       - ${DEV_VHOST_PATH}:/etc/apache2/sites-enabled
       - ${LETSENCRYPT_PATH}:/etc/letsencrypt
       - ${LETSENCRYPT_LIB}:/var/lib/letsencrypt
-      - ${AUTHORIZED_KEYS_PATH}:~/.ssh/authorized_keys
     networks:
       - default
       - men_default
