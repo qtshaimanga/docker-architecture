@@ -22,17 +22,17 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
 - git clone docker-env
 
 ## Docker-env Architecture
-- LAMP
+###### LAMP
  - service-apache
  - service-mariadb
  - service-pma (PhpMyAdmin)
 
-- MEN
+###### MEN
  - service-node
  - service-mongo
  - service-mongo-webadmin (Webtool for MongoDB)
 
-- Create or set subfolder for building
+###### Create or set subfolder for building
  - ./apache-php7/var/www/html
  - ./apache-php7/sites-enabled
  - ./apache-php7/fail2ban/jail.local
@@ -40,7 +40,7 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
  - ./apache-php7/letsencrypt/ssl-renewal.sh
  - ./mariadb/shared
 
-- Set .env (default)
+###### Set .env (default)
  - DEV_PROJECT_PATH=./apache-php7/var/www/html
  - DEV_VHOST_PATH=./apache-php7/sites-enabled
  - MYSQL_DATA_PATH=./mariadb/shared
