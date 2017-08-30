@@ -23,32 +23,32 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
 
 ## Docker-env Architecture
 - LAMP
-        - service-apache
-        - service-mariadb
-        - service-pma (PhpMyAdmin)
+ - service-apache
+ - service-mariadb
+ - service-pma (PhpMyAdmin)
 
 - MEN
-        - service-node
-        - service-mongo
-        - service-mongo-webadmin (Webtool for MongoDB)
+ - service-node
+ - service-mongo
+ - service-mongo-webadmin (Webtool for MongoDB)
 
 - Create or set subfolder for building
-        - ./apache-php7/var/www/html
-        - ./apache-php7/sites-enabled
-        - ./apache-php7/fail2ban/jail.local
-        - ./apache-php7/iptables/firewall.sh
-        - ./apache-php7/letsencrypt/ssl-renewal.sh
-        - ./mariadb/shared
+ - ./apache-php7/var/www/html
+ - ./apache-php7/sites-enabled
+ - ./apache-php7/fail2ban/jail.local
+ - ./apache-php7/iptables/firewall.sh
+ - ./apache-php7/letsencrypt/ssl-renewal.sh
+ - ./mariadb/shared
 
 - Set .env (default)
-        - DEV_PROJECT_PATH=./apache-php7/var/www/html
-        - DEV_VHOST_PATH=./apache-php7/sites-enabled
-        - MYSQL_DATA_PATH=./mariadb/shared
-        - MYSQL_ROOT_PASSWORD=XXX
-        - LETSENCRYPT_PATH=/etc/letsencrypt
-        - LETSENCRYPT_LIB=/var/lib/letsencrypt
-        - FAIL2BAN_JAIL=./apache-php7/fail2ban/jail.local
-        - IPTABLES_FIREWALL=./apache-php7/iptables/firewall.sh
+ - DEV_PROJECT_PATH=./apache-php7/var/www/html
+ - DEV_VHOST_PATH=./apache-php7/sites-enabled
+ - MYSQL_DATA_PATH=./mariadb/shared
+ - MYSQL_ROOT_PASSWORD=XXX
+ - LETSENCRYPT_PATH=/etc/letsencrypt
+ - LETSENCRYPT_LIB=/var/lib/letsencrypt
+ - FAIL2BAN_JAIL=./apache-php7/fail2ban/jail.local
+ - IPTABLES_FIREWALL=./apache-php7/iptables/firewall.sh
 
 ## Quick installation
 #### 1. Start Docker:
