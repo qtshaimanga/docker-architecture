@@ -31,7 +31,7 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
 - sudo apt-get install git
 
 ###### 4. Install Certbot
-- sudo apt-get install python-certbot-apache -t jessie-backports
+- sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
 
 ###### 5. Docker-env
 - git clone docker-env
@@ -88,7 +88,7 @@ pm2 start projectpath
 
 #### 4. Generate letsencrypt files in local
 ````bash
-sudo certbot --apache -d mondomaine.fr
+sudo /opt/letsencrypt/letsencrypt-auto --apache -d mondomaine.fr
 ````
 
 #### 5. Set Vhost
@@ -97,7 +97,7 @@ sudo certbot --apache -d mondomaine.fr
 #### Auto renew for letsencrypt certificats
 Crontab based on ssl-renewal.sh, is he defined to exec
 ````bash
-sudo crontab -e 0 0 1 * 1 certbot renew --post-hook "service apache2 restart" >> ~/var/log/ssl-renewal.log
+sudo crontab -e 0 0 1 * 1 /opt/letsencrypt/letsencrypt-auto --apache --renew-by-default --post-hook "service apache2 restart" >> ~/var/log/ssl-renewal.log
 ````
 
 #### Start/Restart Apache
