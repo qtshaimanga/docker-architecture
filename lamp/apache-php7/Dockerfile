@@ -39,13 +39,13 @@ RUN apt-get -y install curl nano
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install iptables
-ADD iptables/firewall.sh /etc/init.d/
+ADD iptables/firewall.sh /etc/init.d/firewall.sh
 RUN chmod +x /etc/init.d/firewall.sh
 RUN update-rc.d /etc/init.d/firewall.sh defaults
 
 # Install fail2ban
 RUN apt-get install fail2ban
-ADD fail2ban/jail.local /etc/fail2ban/
+ADD fail2ban/jail.local /etc/fail2ban/jail.local
 RUN service fail2ban restart
 
 # SSL
