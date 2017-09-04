@@ -34,7 +34,7 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
 - sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
 
 ###### 5. Docker-env
-- git clone docker-env
+- git clone https://github.com/laboratoirei2r/docker-i2r-env.git
 
 ## Docker-env Architecture
 ###### LAMP
