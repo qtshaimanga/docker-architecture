@@ -74,9 +74,16 @@ docker-compose up -d
 docker-compose restart
 ````
 
+###### Restart
 ````bash
 docker-compose down
 docker-compose restart
+````
+
+###### Manage
+````bash
+docker images
+docker ps
 ````
 
 #### 2. Create a project clone
