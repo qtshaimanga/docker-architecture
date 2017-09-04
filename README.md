@@ -1,6 +1,4 @@
-# I2R Docker environment
-This repository provides docker images to setup with ease development environments needed for developing the I2R projects.
-To deploy and run it, you will need Docker and Docker Compose. Follow the instructions below, depending on your OS.
+# Docker environment
 
 ## Basic Elements
 ###### 1. Check server informations about users and access
