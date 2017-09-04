@@ -49,5 +49,9 @@ RUN apt-get install fail2ban
 ADD fail2ban/jail.local /etc/fail2ban/
 RUN service fail2ban restart
 
+# SSL
+ADD letsencrypt/ssl-renewal.sh ./usr/local/sbin/ssl-renewal.sh
+RUN chmod +x /usr/local/sbin/ssl-renewal.sh
+
 # Upgrade
 RUN apt-get -y upgrade
