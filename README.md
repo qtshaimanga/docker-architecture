@@ -36,6 +36,9 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
 ###### 5. Docker-env
 - git clone https://github.com/laboratoirei2r/docker-i2r-env.git
 
+###### 6. If it is necessary Create network manually
+- docker network create men_default
+
 ## Docker-env Architecture
 ###### LAMP
  - service-apache
