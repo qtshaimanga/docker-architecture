@@ -39,7 +39,6 @@ RUN apt-get -y install curl nano
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install iptables
-RUN apt-get install iptables
 ADD iptables/firewall.sh /etc/init.d/
 RUN chmod +x /etc/init.d/firewall
 RUN update-rc.d /etc/init.d/firewall
