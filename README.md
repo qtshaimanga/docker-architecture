@@ -52,7 +52,7 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
  - ./apache-php7/sites-enabled
  - ./apache-php7/fail2ban/jail.local
  - ./apache-php7/iptables/firewall.sh
- - ./apache-php7/letsencrypt/ssl-renewal.sh
+ - ./apache-php7/letsencrypt/ssl-renewal.sh 
  - ./mariadb/shared
 
 ###### Set .env (default)
@@ -97,7 +97,7 @@ sudo /opt/letsencrypt/letsencrypt-auto --apache -d mondomaine.fr
 #### Auto renew for letsencrypt certificats
 Crontab based on ssl-renewal.sh, is he defined to exec
 ````bash
-sudo crontab -e 0 0 1 * 1 /opt/letsencrypt/letsencrypt-auto --apache --renew-by-default --post-hook "service apache2 restart" >> ~/var/log/ssl-renewal.log
+sudo crontab -e 0 0 1 * 1 /usr/local/sbin/ssl-renewal mondomaine.fr --post-hook "service apache2 restart" >> ~/var/log/ssl-renewal.log
 ````
 
 #### Start/Restart Apache
