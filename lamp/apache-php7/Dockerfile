@@ -49,7 +49,7 @@ ADD fail2ban/jail.local /etc/fail2ban/jail.local
 RUN service fail2ban restart
 
 # SSL
-ADD letsencrypt/ssl-renewal.sh ./usr/local/sbin/ssl-renewal.sh
+ADD letsencrypt/ssl-renewal.sh /usr/local/sbin/ssl-renewal.sh
 RUN chmod +x /usr/local/sbin/ssl-renewal.sh
 
 # Upgrade
