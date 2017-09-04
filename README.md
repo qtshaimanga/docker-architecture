@@ -30,7 +30,7 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
 ###### 3. Install Git
 - sudo apt-get install git
 
-###### 4. Install Certbot
+###### 4. Install Letsencrypt
 - sudo git clone https://github.com/letsencrypt/letsencrypt /opt/letsencrypt --depth=1
 
 ###### 5. Docker-env
