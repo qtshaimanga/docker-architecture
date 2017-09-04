@@ -62,8 +62,6 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
  - MYSQL_ROOT_PASSWORD=XXX
  - LETSENCRYPT_PATH=/etc/letsencrypt
  - LETSENCRYPT_LIB=/var/lib/letsencrypt
- - FAIL2BAN_JAIL=./apache-php7/fail2ban/jail.local
- - IPTABLES_FIREWALL=./apache-php7/iptables/firewall.sh
 
 ## Quick installation
 #### 1. Start Docker:
