@@ -40,8 +40,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 
 # Install iptables
 ADD iptables/firewall.sh /etc/init.d/
-RUN chmod +x /etc/init.d/firewall
-RUN update-rc.d /etc/init.d/firewall
+RUN chmod +x /etc/init.d/firewall.sh
+RUN update-rc.d /etc/init.d/firewall.sh
 
 # Install fail2ban
 RUN apt-get install fail2ban
