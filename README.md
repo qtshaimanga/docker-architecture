@@ -67,7 +67,8 @@ To deploy and run it, you will need Docker and Docker Compose. Follow the instru
  - LETSENCRYPT_LIB=/var/lib/letsencrypt
 
 ## Quick installation
-#### 1. Start Docker:
+#### 1. Use Docker:
+###### Start
 ````bash
 docker-compose build
 docker-compose up -d
