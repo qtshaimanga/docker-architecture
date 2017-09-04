@@ -44,7 +44,6 @@ RUN chmod +x /etc/init.d/firewall.sh
 RUN update-rc.d firewall.sh defaults
 
 # Install fail2ban
-RUN apt-get install fail2ban
 ADD fail2ban/jail.local /etc/fail2ban/jail.local
 RUN service fail2ban restart
 
